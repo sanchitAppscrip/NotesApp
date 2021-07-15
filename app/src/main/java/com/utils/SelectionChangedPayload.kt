@@ -1,0 +1,3 @@
+package com.utils
+
+object SelectionChangedPayload
