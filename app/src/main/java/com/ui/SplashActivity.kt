@@ -18,6 +18,7 @@ class SplashActivity : AppCompatActivity() {
 
         Handler().postDelayed({
            startActivity(Intent(this,NotesListActivity::class.java))
+            finish()
         }, SPLASH_DISPLAY_LENGTH)
     }
 

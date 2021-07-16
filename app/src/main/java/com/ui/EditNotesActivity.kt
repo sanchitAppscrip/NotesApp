@@ -1,5 +1,6 @@
 package com.ui
 
+import android.app.Activity
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
@@ -78,6 +79,8 @@ class EditNotesActivity : AppCompatActivity() {
 
                 Status.SUCCESS -> {
                     NoteStatus.value = AppConstants.NOTE_ADDED
+                    val returnIntent = Intent()
+                    setResult(Activity.RESULT_CANCELED, returnIntent)
                     shortToast(getString(R.string.msg_note_created))
                     finish()
                 }
@@ -97,6 +100,10 @@ class EditNotesActivity : AppCompatActivity() {
 
                 Status.SUCCESS -> {
                     NoteStatus.value = AppConstants.NOTE_UPDATED
+                    val returnIntent = Intent()
+                    val updatedNote = viewModel.getNote()
+                    returnIntent.putExtra(AppConstants.RESULT, updatedNote)
+                    setResult(RESULT_OK, returnIntent)
                     shortToast(getString(R.string.msg_note_updated))
                     finish()
                 }
@@ -116,6 +123,8 @@ class EditNotesActivity : AppCompatActivity() {
 
                 Status.SUCCESS -> {
                     NoteStatus.value = AppConstants.NOTE_DELETED
+                    val returnIntent = Intent()
+                    setResult(Activity.RESULT_CANCELED, returnIntent)
                     shortToast(getString(R.string.msg_note_deleted))
                     finish()
                 }

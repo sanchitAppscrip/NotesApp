@@ -46,6 +46,11 @@ class NoteViewModel @Inject constructor(
         isEdit = edit
     }
 
+    fun getNote():Note{
+        return this.note
+    }
+
+
     fun getAllNotes() {
         disposables.add(userUseCase.getAllNotes()
             .subscribeOn(Schedulers.io())
@@ -96,7 +101,7 @@ class NoteViewModel @Inject constructor(
                 .subscribe({
                     Log.d("Viewmodel", "Response Success")
                     updateNoteObserver.value = Resource.success()
-                    NoteStatus.updatedNote = this.note
+//                    NoteStatus.updatedNote = this.note
                 }) { throwable ->
                     Log.d("Viewmodel", "Response Error")
                     updateNoteObserver.value = Resource.error(throwable.toFileFailure())
